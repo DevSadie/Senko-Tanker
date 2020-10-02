@@ -1,10 +1,10 @@
 {
   "name": "senko-tanker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A bot that is not only a weeb, but can do a lot of stuff.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ."
   },
   "repository": {
     "type": "git",

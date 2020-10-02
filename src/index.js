@@ -1,6 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const { green, red } = require('chalk');
-const fs = require('fs');
+const { readdirSync } = require('fs');
 const { discordToken } = require('./config/secrets.json');
 const { prefix } = require('./config/config.json');
 
@@ -8,10 +8,9 @@ const client = new Client();
 client.commands = new Collection();
 const cooldown = new Collection();
 client.config = require('./config/config.json');
-client.colors = require('./config/colors.json');
 client.disc = require('discord.js');
 
-const commandFiles = fs.readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
+const commandFiles = readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`${__dirname}/commands/${file}`);
 	client.commands.set(command.name, command);
@@ -21,7 +20,7 @@ client.on('ready', () => {
 	console.info(`${green('SUCESS')} Bot is now online`);
 	client.user.setActivity(`out for ${prefix}`, {
 		type: 'WATCHING',
-	}).then(console.log(`${green('SUCESSS')} playing status`));
+	}).then(console.log(`${green('SUCESSS')} Set playing status`));
 });
 
 client.on('message', (message) => {
@@ -36,7 +35,7 @@ client.on('message', (message) => {
 	}
 
 	if (command.args && !args.length) {
-		let reply = 'You did not provie arguments arguments!';
+		let reply = '**You did not provie arguments arguments!**';
 		if (command.usage) {
 			reply += `The proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
 		}
@@ -47,7 +46,7 @@ client.on('message', (message) => {
 		return message.reply('I can\'t execute that command inside DMs!');
 	}
 
-	// cooldowns
+	// create a new collection if cooldown does not have a command
 	if (!cooldown.has(command.name)) {
 		cooldown.set(command.name, new Collection());
 	}
@@ -65,7 +64,10 @@ client.on('message', (message) => {
 			return;
 		}
 	}
+
+	// set the message author's id value in the collection to now.
 	timestamps.set(message.author.id, now);
+	// delete the message author's id when the cooldown time ends.
 	setTimeout(() => timestamps.delete(message.author.id), cooldownTime);
 
 	try {
