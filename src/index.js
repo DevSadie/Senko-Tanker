@@ -8,6 +8,7 @@ const client = new Client();
 client.commands = new Collection();
 const cooldown = new Collection();
 client.config = require('./config/config.json');
+client.colors = require('./config/colors.json');
 client.disc = require('discord.js');
 
 const commandFiles = readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
@@ -18,9 +19,10 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
 	console.info(`${green('SUCESS')} Bot is now online`);
-	client.user.setActivity(`out for ${prefix}`, {
-		type: 'WATCHING',
-	}).then(console.log(`${green('SUCESSS')} Set playing status`));
+	client.user.setActivity('chat.',
+		{
+			type: 'WATCHING',
+		}).then(console.log(`${green('SUCESS')} Set playing status`));
 });
 
 client.on('message', (message) => {
