@@ -23,6 +23,7 @@
     "chalk": "^4.1.0",
     "discord.js": "^12.2.0",
     "eslint": "^7.5.0",
+    "images-scraper": "^6.0.0",
     "snoowrap": "^1.21.0"
   }
 }

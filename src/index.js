@@ -14,5 +14,4 @@ client.colors = require('./config/colors.json');
 });
 
 process.on("unhandledRejection", e => console.error(`${red('ERROR')} ${e}`));
-
 client.login(discordToken);

@@ -44,6 +44,7 @@ module.exports = (Discord, client, message) => {
 
 	// set the message author's id value in the collection to now.
 	timestamps.set(message.author.id, now);
+    
 	// delete the message author's id when the client.cooldown time ends.
 	setTimeout(() => timestamps.delete(message.author.id), client.cooldownTime);
 
