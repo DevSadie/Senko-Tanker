@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { discordToken } = require('./config/secrets.json');
-const { green, red } = require('chalk');
-const client = new Discord.Client();
+const { red } = require('chalk');
+const client = new Discord.Client({ presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, status: "online" } });
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
@@ -15,11 +15,4 @@ client.colors = require('./config/colors.json');
 
 process.on("unhandledRejection", e => console.error(`${red('ERROR')} ${e}`));
 
-client.on('ready', () => {
-	client.user.setActivity('chat.',
-	{
-		type: 'WATCHING',
-	}).then(console.log(`${green('SUCESS')} Set playing status`));
-});
-
-client.login(discordToken)
+client.login(discordToken);
