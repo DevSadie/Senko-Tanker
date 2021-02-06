@@ -27,7 +27,7 @@ module.exports = {
 			return message.reply({
 				embed: {
 					color: client.colors.red,
-					title: '403 Forbidden',
+					title: 'No Permissions',
 					description: 'You do not have permission to use that command!',
 				},
 			});
