@@ -12,6 +12,7 @@ module.exports = {
     aliases: ['img', 'google'],
     args: true,
     usage: '<search query>',
+    cooldown: 20,
     async execute(message, args, client) {
         const imgQuery = args.join(' ');    
         const imgResults = await scraperClient.scrape(imgQuery, 1);
@@ -23,7 +24,7 @@ module.exports = {
             .addFields(
                 { name: 'Search Query', value: imgQuery },
             )
-            .setAuthor(message.author.name, message.author.avatarURL({ format: "png", dynamic: true }))
+            .setAuthor(message.author.username, message.author.avatarURL({ format: "png", dynamic: true }))
             .setImage(imgResults[0].url);
         
         message.channel.send(imgEmbed)
