@@ -3,6 +3,7 @@ const { red } = require('chalk');
 module.exports = {
     name: 'reload',
     description: 'Reloads a command',
+    cooldown: 5,
     args: true,
     usage: '<cmd/alias to reload>',
     execute(message, args, client) {

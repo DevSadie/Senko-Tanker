@@ -1,4 +1,5 @@
 const { prefix } = require(`${process.cwd()}/src/config/config.json`);
+const { red } = require('chalk');
 
 module.exports = (Discord, client, message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -21,6 +22,20 @@ module.exports = (Discord, client, message) => {
 
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!');
+	}
+	
+	if (command.permissions) {
+		const authorPerms = message.channel.permissionsFor(message.author);
+		
+		if (!authorPerms || !authorPerms.has(command.permissions)) {
+			message.reply({
+				embed: {
+					color: client.colors.red,
+					title: 'No Permissions',
+					description: 'You do not have permission to use that command!',
+				},
+			});
+		}
 	}
 
 	// create a new collection if client.cooldown does not have a command
