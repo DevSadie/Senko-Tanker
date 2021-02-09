@@ -3,10 +3,11 @@ const { red } = require('chalk');
 module.exports = {
     name: 'reload',
     description: 'Reloads a command',
+    category: 'Development',
     cooldown: 5,
     args: true,
     usage: '<cmd/alias to reload>',
-    execute(message, args, client) {
+    execute(message, args, client, Discord) {
         if (client.config.owners.includes(message.author.id)) {
             const commandName = args[0].toLowerCase();
             const command = message.client.commands.get(commandName)

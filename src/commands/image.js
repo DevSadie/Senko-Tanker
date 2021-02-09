@@ -9,11 +9,12 @@ const scraperClient = new scraper({
 module.exports = {
     name: 'image',
     description: 'Get an image from Google.',
+    category: 'Fun',
     aliases: ['img', 'google'],
     args: true,
     usage: '<search query>',
     cooldown: 20,
-    async execute(message, args, client) {
+    async execute(message, args, client, Discord) {
         const imgQuery = args.join(' ');    
         const imgResults = await scraperClient.scrape(imgQuery, 1);
 

@@ -2,10 +2,12 @@ const { red } = require('chalk');
 
 module.exports = {
 	name: 'eval',
+	description: 'Execute code from Discord.',
+	category: 'Development',
 	args: true,
 	usage: '<thing to eval>',
 	cooldown: '20',
-	execute(message, args, client) {
+	execute(message, args, client, Discord) {
 		if (client.config.owners.includes(message.author.id)) {
 			try {
 				const evaled = eval(args.join(' '));
