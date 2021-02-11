@@ -8,6 +8,15 @@ Released 2021-2-11
 * Removed st!destroy and st!charli
 * Added Event/Command Controllers
 
+## Version 1.0.1
+Released 2020-10-2
+
+* Added Charli Command
+* Added Destruction Command
+* Added some extra 8ball options
+* Added Command Handler
+* Added Config
+
 ## Version 1.0.0
 Released 2020-8-2
 
