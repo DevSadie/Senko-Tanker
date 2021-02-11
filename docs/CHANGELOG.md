@@ -1,4 +1,4 @@
-# Version 2.1.0
+# Version 1.1.0
 Released 2021-2-11
 
 * Added Controller Handler
@@ -8,18 +8,15 @@ Released 2021-2-11
 * Removed st!destroy and st!charli
 * Added Event/Command Controllers
 
-## Version 2.0.0
-Released 2020-10-2
+## Version 1.0.0
+Released 2020-8-2
 
+* Initialized Bot
+* Created NPM Project
+* Added Client.On Events
 * Added Charli Command
 * Added Destruction Command
 * Added Eval and Ping
 * Added 8ball
 * Added Command Handler
 * Added Config
-
-## Version 1.0.0
-
-* Initialized Bot
-* Created NPM Project
-* Added Client.On Events
