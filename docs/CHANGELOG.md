@@ -23,8 +23,6 @@ Released 2020-8-2
 * Initialized Bot
 * Created NPM Project
 * Added Client.On Events
-* Added Charli Command
-* Added Destruction Command
 * Added Eval and Ping
 * Added 8ball
 * Added Command Handler
