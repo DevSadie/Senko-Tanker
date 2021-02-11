@@ -56,11 +56,12 @@
                     { name: '\u200B', value: '\u200B' },
                     { name: 'Cooldown', value: `${command.cooldown || 3} second(s)` },
                     { name: 'Usage', value: `${client.config.prefix}${command.name} ${command.usage}` || 'No usage' },
-                    { name: 'Permissions', value: command.permssions || 'Anyone can use this command' },
+                    { name: 'Permissions', value: command.permssions     || 'Anyone can use this command' },
                     { name: 'Usable in DMs', value: command.guildOnly ? 'No' : 'Yes' }
                 )
                 .setTimestamp()
-                .setFooter(client.user.username, client.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
+                .setAuthor(client.user.username, client.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
+                .setFooter('[] means optional, <> means required. Do not type these out.');
 
             data.push(commandDetailEmbed);
             message.author.send(data, { split: true })
