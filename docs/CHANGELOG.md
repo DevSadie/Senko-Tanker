@@ -17,3 +17,9 @@ Released 2020-10-2
 * Added 8ball
 * Added Command Handler
 * Added Config
+
+## Version 1.0.0
+
+* Initialized Bot
+* Created NPM Project
+* Added Client.On Events
