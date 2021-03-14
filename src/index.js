@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
 const { discordToken } = require('./config/secrets.json');
 const { red } = require('chalk');
-const client = new Discord.Client({ presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, status: "online" } });
+const client = new Discord.Client({ 
+	presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, status: "online" }
+ });
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();

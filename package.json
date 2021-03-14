@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Senko-Dev/Senko-Tanker.git"
+    "url": "git+https://github.com/DevSenko/Senko-Tanker.git"
   },
   "keywords": [
     "discord-bot"
   ],
-  "author": "Senko Tank",
+  "author": "LaurraDev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Senko-Dev/Senko-Tanker/issues"
+    "url": "https://github.com/DevSenko/Senko-Tanker/issues"
   },
-  "homepage": "https://github.com/Senko-Dev/Senko-Tanker#readme",
+  "homepage": "https://github.com/DevSenko/Senko-Tanker#readme",
   "dependencies": {
     "chalk": "^4.1.0",
     "discord.js": "^12.2.0",
