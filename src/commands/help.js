@@ -64,7 +64,7 @@ module.exports = {
             .setFooter('[] means optional, <> means required. Do not type these out.');
 
         data.push(commandDetailEmbed);
-        message.author.send(data, { split: true })
+        message.author.send(data, { split: true })  
             .then(() => {
                 if (message.channel.type === 'dm') return;
                 message.reply(`I\'ve sent you a DM with info on ${name}!`);

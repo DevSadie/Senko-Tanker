@@ -1,10 +1,10 @@
 const scraper = require('images-scraper');
-const Discord = require('discord.js');
 const scraperClient = new scraper({
     puppeteer: {
         headless: true,
     }
 });
+const embedError = require('../functions/embedError');
 
 module.exports = {
     name: 'image',
@@ -15,8 +15,10 @@ module.exports = {
     usage: '<search query>',
     cooldown: 20,
     async execute(message, args, client, Discord) {
-        const imgQuery = args.join(' ');    
-        const imgResults = await scraperClient.scrape(imgQuery, 1);
+        const imgQuery = args.join(' ');
+        const imgResults = await scraperClient.scrape(imgQuery, 1).catch((error) => {
+            console.error(`${red('Image ERROR')}: ${error}`);
+        }); 
 
         const imgEmbed = new Discord.MessageEmbed()
             .setColor(client.colors.green)
@@ -27,7 +29,7 @@ module.exports = {
             )
             .setAuthor(message.author.username, message.author.avatarURL({ format: "png", dynamic: true }))
             .setImage(imgResults[0].url);
-        
+
         message.channel.send(imgEmbed)
     }
 }

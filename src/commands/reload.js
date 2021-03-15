@@ -8,7 +8,7 @@ module.exports = {
     args: true,
     usage: '<cmd/alias to reload>',
     execute(message, args, client, Discord) {
-        if (client.config.owners.includes(message.author.id)) {
+        if (client.owners.owners.includes(message.author.id)) {
             const commandName = args[0].toLowerCase();
             const command = message.client.commands.get(commandName)
                 || message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
