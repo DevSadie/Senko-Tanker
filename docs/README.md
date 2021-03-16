@@ -12,12 +12,6 @@ A discord bot made in JS for moderation, weebines and memes and stuff.
 | [events/server](/src/events/server/) | Even more shenanigans, but with commands this time |
 | [functions](/src/functions/)         | Self contained pieces of code                      |
 
-| Docubase                             | Description                                        |
-|:-------------------------------------|:---------------------------------------------------|
-| [examples](/docs/examples)           | Examples (Not Used)                                |
-| [images](/docs/images)               | Images used in the documentation                   |
-| [server](/docs/server)               | Documentation on how to host the bot               |
-
 ## Roadmap 
 The roadmap is availble [here](https://github.com/Senko-Dev/Senko-Tanker/projects/1).
 
