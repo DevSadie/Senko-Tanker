@@ -27,12 +27,17 @@ module.exports = {
             }
         } else {
 			return message.reply({
-				embed: {
-					color: client.colors.red,
-					title: 'No Permissions',
-					description: 'You do not have permission to use that command!',
-				},
-			});
+                embed: {
+                    color: client.colors.red,
+                    title: 'No Permissions',
+                    description: 'You do not have permission to use that command',
+                    timestamp: new Date(),
+                    footer: {
+                        text: client.embed.name,
+                        icon_url: client.embed.logo,
+                    },
+                },
+            });
 		}
     }
 }

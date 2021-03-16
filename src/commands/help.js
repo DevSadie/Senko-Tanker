@@ -1,3 +1,5 @@
+const embedError = require('../functions/embedError');
+
 module.exports = {
     name: 'help',
     description: 'List all of my commands or info about a specific command.',
@@ -17,7 +19,8 @@ module.exports = {
                 .setDescription(`\nYou can send \`${client.config.prefix}help [command name]\` to get info on a specific command!`)
                 .addFields(
                     { name: 'Commands', value: commands.map(command => command.name).join(', ') }
-                );
+                )
+                .setFooter(client.embed.name, client.embed.logo);
 
             data.push(commandListEmbed);
 
@@ -28,7 +31,18 @@ module.exports = {
                 })
                 .catch(error => {
                     console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
-                    message.reply('It seems like I can\'t DM you! Do you have DMs disabled?');
+                    message.reply({
+                        embed: {
+                            color: client.colors.red,
+                            title: 'Could not DM',
+                            description: 'It seems like I can\'t DM you! Do you have DMs disabled?',
+                            timestamp: new Date(),
+                            footer: {
+                                text: client.embed.name,
+                                icon_url: client.embed.logo,
+                            },
+                        },
+                    });
                 });
         }
 
@@ -36,13 +50,7 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return message.reply({
-                embed: {
-                    color: client.colors.red,
-                    title: 'Not found',
-                    description: 'That command does not exist!',
-                },
-            });
+            return embedError('Not found', 'That command does not exist!');
         }
 
         let commandDetailEmbed = new Discord.MessageEmbed()
@@ -60,7 +68,7 @@ module.exports = {
                 { name: 'Usable in DMs', value: command.guildOnly ? 'No' : 'Yes' }
             )
             .setTimestamp()
-            .setAuthor(client.user.username, client.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
+            .setAuthor(client.embed.name , client.embed.log, client.embed.url)
             .setFooter('[] means optional, <> means required. Do not type these out.');
 
         data.push(commandDetailEmbed);

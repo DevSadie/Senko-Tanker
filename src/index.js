@@ -1,9 +1,13 @@
 const Discord = require('discord.js');
-const { discordToken } = require('./config/secrets.json');
+const secrets = require('./config/secrets.json');
 const { red } = require('chalk');
 const client = new Discord.Client({ 
-	presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, status: "online" }
- });
+	presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, 
+	status: "online"
+}});
+
+// path var 
+client.root = `${process.cwd()}/src`;
 
 // collections
 client.commands = new Discord.Collection();
@@ -21,6 +25,6 @@ client.owners = require('./config/owners.json');
 	require(`./controllers/${controller}`)(client, Discord);
 });
 
-// error handling + login
+// error handling + handle regular/alpha login
 process.on("unhandledRejection", e => console.error(`${red('ERROR')} ${e}`));
-client.login(discordToken);
+secrets.alphaState ? client.login(secrets.alphaDiscToken) : client.login(secrets.discordToken);

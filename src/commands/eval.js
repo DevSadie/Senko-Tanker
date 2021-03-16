@@ -1,5 +1,6 @@
 const { red } = require('chalk');
 const embedError = require('../functions/embedError');
+const embedSuccess = require('../functions/embedSuccess');
 
 module.exports = {
 	name: 'eval',
@@ -22,25 +23,33 @@ module.exports = {
 			}
 			catch (error) {
 				console.error(`${red('EVAL ERROR')}: ${error}`);
-				embedError('Eval Error!', `\`\`\`js\n${error}\n\`\`\`` )(client, message);
-				// message.reply({
-				// 	embed: {
-				// 		color: client.colors.red,
-				// 		title: 'Evaluation Error!',
-				// 		description: `\`\`\`js\n${error}\n\`\`\``,
-				// 	},
-				// });
+				message.reply({
+					embed: {
+						color: client.colors.red,
+						title: 'Evaluation Error!',
+						description: `\`\`\`js\n${error}\n\`\`\``,
+						timestamp: new Date(),
+						footer: {
+							text: client.embed.name,
+							icon_url: client.embed.logo,
+						},
+					},
+				});
 			}
 		}
 		else {
-			embedError('No Permission', 'You do not have permission to use that command!')(client, message);
-			// return message.reply({
-			// 	embed: {
-			// 		color: client.colors.red,
-			// 		title: 'No Permission',
-			// 		description: 'You do not have permission to use that command!',
-			// 	},
-			// });
+			return message.reply({
+                embed: {
+                    color: client.colors.red,
+                    title: 'No Permissions',
+                    description: 'You do not have permission to use that command',
+                    timestamp: new Date(),
+                    footer: {
+                        text: client.embed.name,
+                        icon_url: client.embed.logo,
+                    },
+                },
+            });
 		}
 	},
 };

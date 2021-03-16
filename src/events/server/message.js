@@ -1,15 +1,30 @@
-const { prefix } = require(`${process.cwd()}/src/config/config.json`);
 const { red } = require('chalk');
 
+// prefix checkinq
+const config = require(`${process.cwd()}/src/config/config.json`);
+const secrets = require(`${process.cwd()}/src/config/secrets.json`);
+const prefix = secrets.alphaState ? config.alphaPrefix : config.prefix;
+
 module.exports = (Discord, client, message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
 
 	if (!command) {
-		return message.reply(`That command does not exist! Use ${prefix}help to see all my commands!`);
+		return message.reply({
+			embed: {
+				color: client.colors.red,
+				title: 'That command does not exist!',
+				description: `Use ${prefix}help to see all my commands!`,
+                timestamp: new Date(),
+				footer: {
+					text: client.embed.name,
+					icon_url: client.embed.logo,
+				},
+			},
+		});
 	}
 
 	if (command.args && !args.length) {
@@ -23,18 +38,23 @@ module.exports = (Discord, client, message) => {
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!');
 	}
-	
+
 	if (command.permissions) {
 		const authorPerms = message.channel.permissionsFor(message.author);
-		
+
 		if (!authorPerms || !authorPerms.has(command.permissions)) {
-			message.reply({
-				embed: {
-					color: client.colors.red,
-					title: 'No Permissions',
-					description: 'You do not have permission to use that command!',
-				},
-			});
+			return message.reply({
+                embed: {
+                    color: client.colors.red,
+                    title: 'No Permissions',
+                    description: 'You do not have permission to use that command',
+                    timestamp: new Date(),
+                    footer: {
+                        text: client.embed.name,
+                        icon_url: client.embed.logo,
+                    },
+                },
+            });
 		}
 	}
 
@@ -59,7 +79,7 @@ module.exports = (Discord, client, message) => {
 
 	// set the message author's id value in the collection to now.
 	timestamps.set(message.author.id, now);
-    
+
 	// delete the message author's id when the client.cooldown time ends.
 	setTimeout(() => timestamps.delete(message.author.id), client.cooldownTime);
 
