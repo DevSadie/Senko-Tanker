@@ -1,6 +1,6 @@
 {
   "name": "senko-tanker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A bot that is not only a weeb, but can do a lot of stuff.",
   "main": "src/index.js",
   "scripts": {

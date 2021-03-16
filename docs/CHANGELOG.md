@@ -1,4 +1,12 @@
-# Version 1.1.0
+# Version 1.2.0
+Released 2021-3-16
+
+* Added Status command to quickly set status
+* Added Info command to view info about the bot
+* Increase Embed Error usage
+* Added Alpha/Release login and prefix setup
+
+## Version 1.1.0
 Released 2021-2-11
 
 * Added Controller Handler
