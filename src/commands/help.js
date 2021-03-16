@@ -1,5 +1,3 @@
-const embedError = require('../functions/embedError');
-
 module.exports = {
     name: 'help',
     description: 'List all of my commands or info about a specific command.',
@@ -50,7 +48,18 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return embedError('Not found', 'That command does not exist!');
+            return message.reply({
+                embed: {
+                    color: client.colors.red,
+                    title: 'Not Found',
+                    description: 'That command does not exist!',
+                    timestamp: new Date(),
+                    footer: {
+                        text: client.embed.name,
+                        icon_url: client.embed.logo,
+                    },
+                },
+            });
         }
 
         let commandDetailEmbed = new Discord.MessageEmbed()
@@ -68,11 +77,11 @@ module.exports = {
                 { name: 'Usable in DMs', value: command.guildOnly ? 'No' : 'Yes' }
             )
             .setTimestamp()
-            .setAuthor(client.embed.name , client.embed.log, client.embed.url)
+            .setAuthor(client.embed.name, client.embed.log, client.embed.url)
             .setFooter('[] means optional, <> means required. Do not type these out.');
 
         data.push(commandDetailEmbed);
-        message.author.send(data, { split: true })  
+        message.author.send(data, { split: true })
             .then(() => {
                 if (message.channel.type === 'dm') return;
                 message.reply(`I\'ve sent you a DM with info on ${name}!`);
