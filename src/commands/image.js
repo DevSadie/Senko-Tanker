@@ -4,7 +4,6 @@ const scraperClient = new scraper({
         headless: true,
     }
 });
-const embedError = require('../functions/embedError');
 
 module.exports = {
     name: 'image',

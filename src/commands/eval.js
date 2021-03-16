@@ -1,6 +1,4 @@
 const { red } = require('chalk');
-const embedError = require('../functions/embedError');
-const embedSuccess = require('../functions/embedSuccess');
 
 module.exports = {
 	name: 'eval',
