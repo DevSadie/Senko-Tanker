@@ -7,6 +7,7 @@ The following is a set of guidelines for contributing to Senko-Tanker. These are
 * [Code of conduct](#code-of-conduct)
 * [I just have a question](#i-just-have-a-question)
 * [What should I know](#what-should-i-know)
+    * [Branches](#branches)
     * [Folder Structure](#folder-structure)
     * [Roadmap](#roadmap)
 ***
@@ -18,6 +19,12 @@ This project, and everyone participating in it is governed by the [Contributor C
 If you have a question, just @ [DevSadie](https://twitter.com/DevSadie) on Twitter. Do not create an issue, you're just going to add to the bloat.
 
 ## What should I know
+
+### Branches
+* The `root` branch is the development branch, the alpha version of the bot is run here. The `alphaState` should be set to `true`
+* The `stable` branch is the production branch, the stable version is hosted from this. The `alphaState` should be set to `true`
+
+Do **NOT** push code to the stable branch, it is only intended to host a version of Senko-Tanker without documentation.
 
 ### Folder structure
 | Codebase                             | Description                                                              |

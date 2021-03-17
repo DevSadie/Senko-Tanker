@@ -3,7 +3,8 @@ const secrets = require('./config/secrets.json');
 const { red } = require('chalk');
 const client = new Discord.Client({ 
 	presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, 
-	status: "online"
+	status: "online",
+	disableMentions: "everyone"
 }});
 
 // path var 

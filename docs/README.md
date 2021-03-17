@@ -12,6 +12,12 @@ A discord bot made in JS for moderation, weebines and memes and stuff.
 | [events/server](/src/events/server/) | Even more shenanigans, but with commands this time |
 | [functions](/src/functions/)         | Self contained pieces of code                      |
 
+## Branches
+* The `root` branch is the development branch, the alpha version of the bot is run here. The `alphaState` should be set to `true`
+* The `stable` branch is the production branch, the stable version is hosted from this. The `alphaState` should be set to `true`
+
+Do **NOT** push code to the stable branch, it is only intended to host a version of Senko-Tanker without documentation.
+
 ## Roadmap 
 The roadmap is availble [here](https://github.com/Senko-Dev/Senko-Tanker/projects/1).
 
