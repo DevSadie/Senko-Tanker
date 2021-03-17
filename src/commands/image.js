@@ -16,7 +16,7 @@ module.exports = {
     async execute(message, args, client, Discord) {
         const imgQuery = args.join(' ');
         const imgResults = await scraperClient.scrape(imgQuery, 1).catch((error) => {
-            console.error(`${red('Image ERROR')}: ${error}`);
+            client.logger.log(`${red('IMAGE ERROR:')}:`, error);
         }); 
 
         const imgEmbed = new Discord.MessageEmbed()

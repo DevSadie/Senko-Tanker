@@ -1,5 +1,3 @@
-const { red } = require('chalk');
-
 module.exports = {
     name: 'status',
     description: 'Change bot status from Discord.',

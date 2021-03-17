@@ -1,14 +1,26 @@
 const Discord = require('discord.js');
 const secrets = require('./config/secrets.json');
-const { red } = require('chalk');
-const client = new Discord.Client({ 
-	presence: { activity: { name: "Chat | st!help", type: "WATCHING" }, 
-	status: "online",
-	disableMentions: "everyone"
-}});
+const client = new Discord.Client({
+	presence: {
+		activity: { name: "Chat | st!help", type: "WATCHING" },
+		status: "online"
+	}, disableMentions: "everyone"
+});
 
-// path var 
+// create winston
+const winston = require('winston');
+const logger = winston.createLogger({
+	transports: [
+		new winston.transports.Console(),
+		new winston.transports.File({ filename: './logs/error.log', level: 'error' }),
+		new winston.transports.File({ filename: './logs/combined.log' }),
+	],
+	format: winston.format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
+});
+
+// path var + modules + client
 client.root = `${process.cwd()}/src`;
+client.logger = logger;
 
 // collections
 client.commands = new Discord.Collection();
@@ -27,5 +39,5 @@ client.owners = require('./config/owners.json');
 });
 
 // error handling + handle regular/alpha login
-process.on("unhandledRejection", e => console.error(`${red('ERROR')} ${e}`));
+process.on("unhandledRejection", error => logger.log('error', error));
 secrets.alphaState ? client.login(secrets.alphaDiscToken) : client.login(secrets.discordToken);

@@ -1,5 +1,3 @@
-const { red } = require('chalk');
-
 module.exports = {
 	name: 'eval',
 	description: 'Execute code from Discord.',
@@ -20,7 +18,7 @@ module.exports = {
 				});
 			}
 			catch (error) {
-				console.error(`${red('EVAL ERROR')}: ${error}`);
+				client.logger.log('red', error);
 				message.reply({
 					embed: {
 						color: client.colors.red,

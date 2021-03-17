@@ -9,16 +9,18 @@ module.exports = {
         const data = [];
         const { commands } = message.client;
 
-
         if (!args.length) {
-            const commandListEmbed = new Discord.MessageEmbed()
+            const categories = ['Fun', 'Dev', 'Bot', 'Utilities']
+            let commandListEmbed = new Discord.MessageEmbed()
                 .setColor(client.colors.green)
                 .setTitle('Help')
                 .setDescription(`\nYou can send \`${client.config.prefix}help [command name]\` to get info on a specific command!`)
-                .addFields(
-                    { name: 'Commands', value: commands.map(command => command.name).join(', ') }
-                )
+
                 .setFooter(client.embed.name, client.embed.logo);
+
+            categories.forEach(category, () => {
+                commandListEmbed.addField(category, client.commands.filter(command.category = category).map(command => command.name).join(', '))
+            })
 
             data.push(commandListEmbed);
 
@@ -28,7 +30,7 @@ module.exports = {
                     message.reply('I\'ve sent you a DM with all my commands!');
                 })
                 .catch(error => {
-                    console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
+                    client.logger.log('error', error);
                     message.reply({
                         embed: {
                             color: client.colors.red,
@@ -87,7 +89,7 @@ module.exports = {
                 message.reply(`I\'ve sent you a DM with info on ${name}!`);
             })
             .catch(error => {
-                console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
+                client.logger.log('error', error);
                 message.reply('It seems like I can\'t DM you! Do you have DMs disabled?');
             });
     },
