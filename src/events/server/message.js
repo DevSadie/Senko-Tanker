@@ -1,6 +1,4 @@
-const { red } = require('chalk');
-
-// prefix checkinq
+// prefix checking
 const config = require(`${process.cwd()}/src/config/config.json`);
 const secrets = require(`${process.cwd()}/src/config/secrets.json`);
 const prefix = secrets.alphaState ? config.alphaPrefix : config.prefix;
@@ -87,7 +85,7 @@ module.exports = (Discord, client, message) => {
 		command.execute(message, args, client, Discord);
 	}
 	catch (error) {
-		console.error(`${red('COMMAND ERROR')} ${error}`);
+		client.logger.log('error', error);
 		message.reply('There was an error trying to execute that command!');
 	}
 }
