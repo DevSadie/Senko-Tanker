@@ -10,20 +10,23 @@ module.exports = {
         const { commands } = message.client;
 
         if (!args.length) {
-            const categories = ['Fun', 'Dev', 'Bot', 'Utilities'];
-
             let commandListEmbed = new Discord.MessageEmbed()
                 .setColor(client.colors.green)
                 .setTitle('Help')
                 .setDescription(`\nYou can send \`${client.config.prefix}help [command name]\` to get info on a specific command!`)
+                // fields for everyone commands
+                .addField('👥 For Everyone', 'Everyone can use these commands')
                 .addFields(
-                    { name: '👥 For Everyone', value: 'Everyone can use these commands'},
-                    { name: '🎉 Fun', value: commands.filter(command.category = 'Fun').then(commands.map(command => command.name).join(', ')), inline: true },
-                    { name: '🤖 Bot', value: commands.filter(command.category = 'Bot').then(commands.map(command => command.name).join(', ')), inline: true },
-                    { name: '⚙ Utilities', value: commands.filter(command.category = 'Utilities').then(commands.map(command => command.name).join(', ')), inline: true },
-                    { name: '\U200B', value: '\U200B'},
-                    { name: '👤 For Developers', value: 'Only a select few can run these'},
-                    { name: '👩🏼‍💻 Dev', value: commands.filter(command.category = 'Dev').then(commands.map(command => command.name).join(', ')), inline: true },
+                    { name: '🎉 Fun', value: commands.filter(command => command.category = 'Fun').then((commands) => commands.map(command => command.name).join(', ')), inline: true },
+                    { name: '🤖 Bot', value: commands.filter(command => command.category = 'Bot').then((commands) => commands.map(command => command.name).join(', ')), inline: true },
+                    { name: '⚙ Utilities', value: commands.filter(command => command.category = 'Utilities').then((commands) => commands.map(command => command.name).join(', ')), inline: true },
+                )
+                // seperator
+                .addField('\U200B','\U200B')
+                // fields for dev commands
+                .addField('👤 For Developers', 'Only a select few can run these')
+                .addfields(
+                    { name: '👩🏼‍💻 Dev', value: commands.filter(command => command.category = 'Dev').then((commands) => commands.map(command => command.name).join(', ')), inline: true },
                 )
                 .setFooter(client.embed.name, client.embed.logo);
 

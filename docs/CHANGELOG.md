@@ -1,4 +1,6 @@
-# Version 1.2.0
+# Version 1.3.0
+Released 2021-3-16
+## Version 1.2.0
 Released 2021-3-16
 
 * Added Status command to quickly set status
