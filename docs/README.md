@@ -1,3 +1,5 @@
+<p style="text-align:center">This project has been archived in favor of <a href="https://devsadie.github.io/proton">Proton</a>.</p>
+
 # Senko Tanker
 A discord bot made in JS for moderation, weebines and memes and stuff.
 
